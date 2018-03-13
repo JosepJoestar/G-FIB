@@ -19,7 +19,7 @@ void main()
     float phi = -time * texCoord.s;
     float c = cos(phi), s = sin(phi);
     mat3 rotate = mat3(
-            vec3(c, 0, -s),
+            vec3(c, 0, s),
             vec3(0, 1, 0),
             vec3(s, 0, c)
         );

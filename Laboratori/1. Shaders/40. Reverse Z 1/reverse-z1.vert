@@ -9,13 +9,12 @@ out vec4 frontColor;
 uniform mat4 modelViewProjectionMatrix;
 uniform mat3 normalMatrix;
 
-<<<<<<< HEAD
-void main()
-{
-=======
+uniform vec3 boundingBoxMin;
+uniform vec3 boundingBoxMax;
+
 void main() {
->>>>>>> Add lab sessions and missing shader exercices
     vec3 N = normalize(normalMatrix * normal);
-    frontColor = vec4(color,1.0) * N.z;
-    gl_Position = modelViewProjectionMatrix * vec4(vertex, 1.0);
+    frontColor = vec4(color,1.0);
+    vec4 vtx = modelViewProjectionMatrix * vec4(vertex.x, vertex.y, -vertex.z, 1.0);
+    gl_Position = vtx;
 }

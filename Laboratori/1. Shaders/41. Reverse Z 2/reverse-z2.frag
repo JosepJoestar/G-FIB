@@ -3,11 +3,7 @@
 in vec4 frontColor;
 out vec4 fragColor;
 
-<<<<<<< HEAD
-void main()
-{
-=======
 void main() {
->>>>>>> Add lab sessions and missing shader exercices
+    gl_FragDepth = 1 - gl_FragCoord.z;
     fragColor = frontColor;
 }

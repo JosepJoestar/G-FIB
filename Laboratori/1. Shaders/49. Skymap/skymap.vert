@@ -12,5 +12,5 @@ uniform mat3 normalMatrix;
 void main() {
     vtx = vertex;
     obs = (modelViewMatrixInverse * vec4(0, 0, 0, 1)).xyz;
-    gl_Position = modelViewProjectionMatrix * vec4(vertex, 1.0);
+    gl_Position = modelViewProjectionMatrix * vec4(vertex, 1);
 }

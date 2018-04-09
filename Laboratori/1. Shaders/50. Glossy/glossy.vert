@@ -16,5 +16,5 @@ void main() {
     V = (modelViewMatrix * vec4(vertex, 1)).xyz;
     N = normalMatrix * normal;
     vtexCoord = texCoord;
-    gl_Position = modelViewProjectionMatrix * vec4(vertex, 1.0);
+    gl_Position = modelViewProjectionMatrix * vec4(vertex, 1);
 }

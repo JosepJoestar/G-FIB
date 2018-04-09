@@ -19,7 +19,6 @@ void main() {
     float GY = length(texture(texture0, top) - texture(texture0, bottom));
     vec2 G = vec2(GX, GY);
 
-    length(G) > threshold
-        ? fragColor = vec4(0, 0, 0, 1)
-        : fragColor = texture(texture0, vtexCoord);
+    fragColor = length(G) > threshold
+        ? vec4(0, 0, 0, 1) : texture(texture0, vtexCoord);
 }

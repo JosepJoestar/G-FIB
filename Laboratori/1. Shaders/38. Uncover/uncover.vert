@@ -7,6 +7,6 @@ out vec4 vtx;
 uniform mat4 modelViewProjectionMatrix;
 
 void main() {
-    vtx = modelViewProjectionMatrix * vec4(vertex, 1.0);
+    vtx = modelViewProjectionMatrix * vec4(vertex, 1);
     gl_Position = vtx;
 }

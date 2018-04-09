@@ -14,6 +14,6 @@ uniform mat3 normalMatrix;
 void main() {
     V = vec4(vertex, 1);
     vtexCoord = texCoord;
-    NE = normalize(normalMatrix * normal);
-    gl_Position = modelViewProjectionMatrix * vec4(vertex, 1.0);
+    NE = normalMatrix * normal;
+    gl_Position = modelViewProjectionMatrix * vec4(vertex, 1);
 }

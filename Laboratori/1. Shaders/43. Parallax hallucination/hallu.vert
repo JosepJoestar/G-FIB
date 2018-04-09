@@ -10,5 +10,5 @@ uniform mat3 normalMatrix;
 
 void main() {
     vtexCoord = texCoord;
-    gl_Position = modelViewProjectionMatrix * vec4(vertex, 1.0);
+    gl_Position = modelViewProjectionMatrix * vec4(vertex, 1);
 }

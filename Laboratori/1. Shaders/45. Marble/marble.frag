@@ -34,5 +34,5 @@ void main() {
         : mix(redish, white, (v - 0.5)*2);
     
     vec3 Pos = (modelViewMatrix * V).xyz;
-    fragColor = shading(NE, Pos, diff);
+    fragColor = shading(normalize(NE), Pos, diff);
 }

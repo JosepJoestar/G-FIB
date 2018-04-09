@@ -19,7 +19,8 @@ vec4 sphereMapTex(sampler2D tex, vec3 R) {
 }
 
 void main() {
+    vec3 NN = normalize(N);
     vec3 L = normalize(O - V);
-    vec3 R = 2 * max(0, dot(N, L)) * N - L;
+    vec3 R = 2 * max(0, dot(NN, L)) * NN - L;
     fragColor = sphereMapTex(texture0, R);
 }

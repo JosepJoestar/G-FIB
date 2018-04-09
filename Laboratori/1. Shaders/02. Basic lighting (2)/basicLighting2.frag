@@ -5,9 +5,6 @@ in vec3 N;
 
 out vec4 fragColor;
 
-uniform mat3 normalMatrix;
-
 void main() {
-    vec3 normal = normalize(normalMatrix * N);
-    fragColor = frontColor * normal.z;
+    fragColor = frontColor * normalize(N).z;
 }

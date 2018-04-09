@@ -1,34 +1,36 @@
 #version 330 core
 
 layout (location = 0) in vec3 vertex;
-layout (location = 1) in vec3 normal;
-layout (location = 2) in vec3 color;
-layout (location = 3) in vec2 texCoord;
 
 out vec4 frontColor;
 
 uniform mat4 modelViewProjectionMatrix;
-uniform mat3 normalMatrix;
 uniform vec3 boundingBoxMin;
 uniform vec3 boundingBoxMax;
 
-float scaleVert(float y, float ma, float mi) {
-    return (y - mi) / (ma  - mi);
+const vec4 RED = vec4(1, 0, 0, 1);
+const vec4 YELLOW = vec4(1, 1, 0, 1);
+const vec4 GREEN = vec4(0, 1, 0, 1);
+const vec4 CIAN = vec4(0, 1, 1, 1);
+const vec4 BLUE = vec4(0, 0, 1, 1);
+
+float scaleVert(float y, float lower, float upper) {
+    return (y - lower) / (upper  - lower);
 }
 
 vec4 getFrontColor(float height) {
     if (height < 0.25)
-        return mix(vec4(1, 0, 0, 1), vec4(1, 1, 0, 1), scaleVert(height, 0.25, 0.00));
+        return mix(RED, YELLOW, scaleVert(height, 0.00, 0.25));
     else if (height < 0.5)
-        return mix(vec4(1, 1, 0, 1), vec4(0, 1, 0, 1), scaleVert(height, 0.50, 0.25));
+        return mix(YELLOW, GREEN, scaleVert(height, 0.25, 0.50));
     else if (height < 0.75)
-        return mix(vec4(0, 1, 0, 1), vec4(0, 1, 1, 1), scaleVert(height, 0.75, 0.50));
+        return mix(GREEN, CIAN, scaleVert(height, 0.50, 0.75));
     else
-        return mix(vec4(0, 1, 1, 1), vec4(0, 0, 1, 1), scaleVert(height, 1.00, 0.75));
+        return mix(CIAN, BLUE, scaleVert(height, 0.75, 1.00));
 }
 
 void main() {
-    float height = scaleVert(vertex.y, boundingBoxMax.y, boundingBoxMin.y);
+    float height = scaleVert(vertex.y, boundingBoxMin.y, boundingBoxMax.y);
     frontColor = getFrontColor(height);
-    gl_Position = modelViewProjectionMatrix * vec4(vertex, 1.0);
+    gl_Position = modelViewProjectionMatrix * vec4(vertex, 1);
 }

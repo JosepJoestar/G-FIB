@@ -1,10 +1,9 @@
-#ifndef _ANIMATEVERTICES_H
-#define _ANIMATEVERTICES_H
+#ifndef _FRAGMENTILLUMINATION_H
+#define _FRAGMENTILLUMINATION_H
 
-#include <QElapsedTimer>
 #include "plugin.h" 
 
-class AnimateVertices: public QObject, public Plugin {
+class FragmentIllumination: public QObject, public Plugin {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "Plugin") 
 	Q_INTERFACES(Plugin)
@@ -15,9 +14,8 @@ class AnimateVertices: public QObject, public Plugin {
 	void postFrame();
   private:
 	QOpenGLShaderProgram* program;
-	QOpenGLShader* vs;	
-	QOpenGLShader* fs;
-	QElapsedTimer elapsedTimer;
+    QOpenGLShader* vs;	
+    QOpenGLShader* fs;
 };
 
 #endif

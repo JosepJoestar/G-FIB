@@ -6,10 +6,11 @@ void ModelInfo::onPluginLoad() {
 }
 
 void ModelInfo::postFrame() {
-	cout << "Objects: " << ModelInfo::objectCount << endl;
-	cout << "|- Polygons: " << ModelInfo::polygonCount << endl;
-	cout << "|   \\- " << ModelInfo::trianglePercent << "\% triangles" << endl;
-	cout << "\\- Vertices: " << ModelInfo::vertexCount << endl << endl;
+	cout << "Objects: " << objectCount << endl;
+	cout << "|- Polygons: " << polygonCount << endl;
+	if (trianglePercent != -1)
+		cout << "|   \\- " << trianglePercent << "\% triangles" << endl;
+	cout << "\\- Vertices: " << vertexCount << endl << endl;
 }
 
 void ModelInfo::onObjectAdd() {
@@ -21,9 +22,9 @@ void ModelInfo::onSceneClear() {
 }
 
 void ModelInfo::updateCounters() {
-	int polygonCount = 0;
+	polygonCount = 0;
+	vertexCount = 0;
 	int triangleCount = 0;
-	int vertexCount = 0;
 	for (Object obj : scene()->objects()) {
 		polygonCount += obj.faces().size();
 		for (Face f : obj.faces())
@@ -31,10 +32,8 @@ void ModelInfo::updateCounters() {
 				++triangleCount;
 		vertexCount += obj.vertices().size();
 	}
-	float percent = triangleCount == 0 ? 0 : ((float) triangleCount / (float) polygonCount) * 100;
-
-	ModelInfo::objectCount = scene()->objects().size();
-	ModelInfo::polygonCount = polygonCount;
-	ModelInfo::vertexCount = vertexCount;
-	ModelInfo::trianglePercent = percent;
+	
+	objectCount = scene()->objects().size();
+	trianglePercent = triangleCount == 0
+		? -1 : ((float) triangleCount / (float) polygonCount) * 100;
 }
